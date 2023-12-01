@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador Regressivo para o Natal</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: url('fundo.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 20vh;
+    }
+
+    h1 {
+      color: #ffcc00;
+      background-color: rgba(51, 51, 51, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    #countdown {
+      font-size: 36px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #333;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      text-align: left; 
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Contagem Regressiva para o Natal</h1>
+  <div id="countdown"></div>
+
+  <script>
+    const christmasDate = new Date(2023, 11, 25).getTime();
+
+    const countdown = setInterval(function () {
+
+      const now = new Date().getTime();
+
+      const difference = christmasDate - now;
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      if (difference < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "Feliz Natal!";
+      }
+    }, 1000);
+  </script>
+</body>
+
+</html>
